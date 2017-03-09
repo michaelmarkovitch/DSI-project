@@ -1,4 +1,4 @@
-# FIrst blog post
+# First blog post
 
 Hello world
 
