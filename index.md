@@ -11,42 +11,14 @@ To compound the dificulty, there are many common words in songs which are not in
 We would like to see how well can we find these relationships between songs, and reflect them upon the artists performing them: as example, Hendrix is connected to Dylan through "All along the watchtower". 
 These connections between performers will enable us to create a "social network of performers". Such a network can have very interesting applications, such as creating a "small world" application (where we find paths connecting different artists though the words of their songs).
 
+## Method
+We plan to accomplish this task by first scraping lyrics data from azlyrics.com. We chose to use this website due to the lyrics pages being easy to parse, which will hopefully make it a simple task to scrape relatively clean data. Also songs from the website are sorted by album by artist. This means that covers are represented in the data as well as the originals, which is useful for the task we hope to accomplish. (Lastly terms of use are quite lenient, so it won't be illegal to collect the data, which is always nice.) 
 
+After getting our data, we'll inspect it in order to understand how we need to clean the data further. This will be highly dependant upon what the data looks like once it is in our database.
 
-## Welcome to GitHub Pages
+To construct our "social network of performers" and find the similarities between songs based on text, we will be using unsupervised machine learning. There are multiple avenues to explore in accomplishing this. One we plan to attempt is using Kmeans clustering to create the social network. We will decide on what other methods based upon the nature of our data and database at this point. TF/IDF would also be a useful way to look at the data, as we do not want very common words to have a significant weight in whatever method we use. Additionally we could also consider not simply comparing the words of lyrics, but instead 2 grams or 3 grams in order to generate more and deeper data.
 
-You can use the [editor on GitHub](https://github.com/michaelmarkovitch/DSI-project/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## Visualization
+The final visualization will be highly dependant upon our results of the previous part. At this point hopefully we can represent our data as a graph where artists are nodes connected to each other, where the lines connecting each node has a width correlated to the strength of their relation.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/michaelmarkovitch/DSI-project/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+If we are very ambitious we could potentially setup a simple webapp, which given one song feed the user a suggestion for another similar song or artist in our network.
