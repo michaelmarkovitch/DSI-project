@@ -22,3 +22,11 @@ To construct our "social network of performers" and find the similarities betwee
 The final visualization will be highly dependant upon our results of the previous part. At this point hopefully we can represent our data as a graph where artists are nodes connected to each other, where the lines connecting each node has a width correlated to the strength of their relation.
 
 If we are very ambitious we could potentially setup a simple webapp, which given one song feed the user a suggestion for another similar song or artist in our network.
+
+# Second post
+
+As the old adage says "no battleplan survives first contact" (Helmut von Moltke), our plan to use azlyrics.com did not survive for long, as they enforce a very agressive rate limit on page reads. Therefore we had to change our source to absolutelyrics.com (where the terms of use are for educational purposes only), which meant building a new custom scraper.
+
+In addition since we are more careful about the rate of page requests, the rate of scraping is slow. Therefore, in order to get the amount of data (songs) we need, we are setting up a Raspberry Pi as a dedicated spider, running 24/7. In addition, we are adding proxy servers in order to be able to increase the pace of scraping.
+
+Due to these issues we don't have enough data yet to start with perliminary exploration of the data, and testing ML algorithms.
