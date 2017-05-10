@@ -48,3 +48,36 @@ We end this post with a few example graphs showing some very influential artists
 ![Bob Dylan](BobDylan.png)
 ![Aretha Franklin](ArethaFranklin.png)
 ![The Carpenters](TheCarpenters.png)
+
+# Fourth post
+
+We wanted to use an unsupervised clustering algorithm, to identify similar songs, and ran into the following question: can we define the number of clusters we need? The answer is no, and therefore using common algorithms such as k-means clustering is not feasible.
+We ended up using a clustering algorithm which is similar to Locality Sensitive Hashing: we ran multiple instances of k-means clustering (where k=1000, and we used Cosine similarity for the distance function), and if a pair of songs were clustered together in more than 50% of iterations we deemed the pair to be similar.
+We got results that were generally compatible with the Jaccard similarity, with the notable exception that songs which were not in English (a minority of songs) were clustered together.
+
+Given that the bulk of the work has been done by the previous post, this blogpost only presents the clustering algorithm we used.
+
+# Last post
+
+Well, it’s been fun, it’s been real, it’s been statistically significant.
+
+But all good things, and data science projects must come to an end.
+
+We’ll wrap this one up with a brief rundown of the entire project, and our journey along the way.
+
+1. The Idea:
+To create an influence network between artists, based upon the similarity of lyrics between their songs.
+
+2. The motivation:
+	The idea all artists have influences from other artists. Additionally group of artists may commonly write songs with similar topics or lyrics. We wanted to use statistical and ML analysis in order to build this influence network so that one could actively visualize and understand the influence artists have had on each other. Also, we wanted to find if there was any interesting or unexpected trends between artists that we weren’t expecting. (Spoilers: There were!).
+
+3. The Data:
+	In order to accomplish our task, we needed the most valuable resource on earth: data. We ended up scraping our data from absolutelyrics.com. One, because it was viable to do without getting blocked or accidentally attacking the site with requests, and two, because it was legal, since the site was crowdsourced. Using our small army of proxies we pulled 99,000 songs from the site. After doing so we found the frequency at which unique grams showed up in songs, and filtered out those that showed up too often (>1000) or too rarely (=1), to give us our final set of data, ready to go where no lyrics data has gone before (well, maybe.)
+
+4. The Method:
+	Now we created connection matrices between the songs using Jaccard Similarity as our baseline, and then unsupervised k-means machine learning. Both of these methods succeeded in giving us robust well connected networks, with graphs of 700-800 connected artists. You can see our visualizations attached.
+
+![Rolling Stones](RollingStones.png)
+![graph](Viz2.png)
+
+Generally, the final result agreed with what we expected from the outset. Artists you would expect to be influential. . . were influential by our metrics. Genres tended to have songs about similar topics. It seems that our work has affirmed what our initial hypothesis was, as well providing us a slick visualization to illustrate it. Additionally we had some fun results, such as the fact that artists who published songs not in english were clustered by their respective languages, and many artists were connected due to their mutual covering of christmas carols.
